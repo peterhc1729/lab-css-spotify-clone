@@ -1,8 +1,242 @@
-/*
-Colors:
+/* ===============================
+   ROOT-VARIABLEN
+   =============================== */
+:root {
+  --spotify-green: #00b172;
+  --text-gray: #1a1a1a;
+  --white-color: #fff;
+  --spotify-font: "Montserrat", sans-serif;
+}
 
-Text: 1A1A1A
-Green: #00B172
-White: #FFF
+/* ===============================
+   GLOBALE SETTINGS
+   =============================== */
+body {
+  margin: 0;
+  font-family: var(--spotify-font);
+  color: var(--text-gray);
+}
+p {
+  line-height: 1.5; /* Abstand zwischen den Zeilen */
+}
+header,
+.catch-phrases,
+nav {
+  font-family: inherit;
+}
 
-*/
+/* ===============================
+   NAVIGATIONSLEISTE
+   =============================== */
+nav {
+  background-color: var(--white-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 14vh;
+  box-sizing: border-box;
+  padding: 0 40px;
+  position: fixed;
+  z-index: 999; /* Navbar bleibt über allem */
+}
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  font-size: 1.4em;
+}
+.spotify-logo {
+  height: 68px;
+  width: auto;
+}
+
+/* ===============================
+   CATCHPHRASES / HEADER
+   =============================== */
+.catch-phrases {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 180px;
+  padding: 0 20px;
+  background-image: url("/images/landing.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: var(--white-color);
+  text-align: center;
+}
+.catch-phrases h1 {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 4.2em 0 0.2em 0;
+}
+.catch-phrases p {
+  font-size: 1.5em;
+  margin: 0 0 0.1em 0;
+}
+
+/* ===============================
+   FEATURES-SECTION
+   =============================== */
+.features {
+  text-align: center;
+  margin-bottom: 6em;
+}
+.features h2 {
+  margin: 2em 0 1em;
+  display: inline-block;
+  border-bottom: 3px solid var(--spotify-green);
+}
+.features h3 {
+  color: var(--spotify-green);
+  margin: 0;
+  padding: 0;
+  font-size: 1.3em;
+}
+.feature-container {
+  display: flex;
+  flex-direction: row; /* Artikel nebeneinander */
+  flex-wrap: wrap; /* Zeilenumbruch bei kleinen Bildschirmen */
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 20px; /* Abstand zwischen Artikeln */
+  margin-top: 30px;
+}
+/* Artikel / Einzelne Feature-Box */
+.feature-container article {
+  display: flex;
+  flex-direction: column; /* Icon -> H3 -> P */
+  align-items: center; /* horizontale Zentrierung */
+  text-align: center;
+  flex: 1 1 250px; /* alle Artikel gleich breit, mind. 250px */
+  max-width: 300px; /* verhindert zu breite Artikel */
+  font-size: 1.2em;
+}
+.feature-container article p {
+  margin-top: 1em;
+  font-size: 1.1em;
+}
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.feature-img {
+  height: 100px;
+  width: auto;
+  flex-shrink: 0;
+}
+.feature-img-2 {
+  height: 86px;
+  width: auto;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .feature-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-container article {
+    max-width: 90%;
+    margin-bottom: 2em;
+  }
+}
+
+/* ===============================
+   INFO-SECTION
+   =============================== */
+.info {
+  border: 3px solid blue;
+  background-color: var(--spotify-green);
+  color: var(--white-color);
+  width: 100%;
+  min-height: 400px;
+  display: flex;
+  justify-content: space-between; /* Text links, Bild rechts */
+  position: relative;
+  align-items: flex-start;
+  padding: 2em 3em;
+  margin: 0 2em 2em;
+}
+.info h2 {
+  display: inline-block;
+  margin-top: 2em;
+  border-bottom: 3px solid var(--white-color);
+}
+.spotify-icon-img {
+  position: absolute;
+  max-width: 9%;
+  height: auto;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  margin: 0 auto;
+}
+.info-content {
+  border: 3px solid yellow;
+  position: relative;
+  max-width: 800px;
+  margin: 0;
+  padding-bottom: 2.8em;
+  color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  z-index: 1;
+  text-align: left;
+}
+.app-image-container {
+  border: 3px solid white;
+  max-width: 40%; /* Bild nimmt 40% der Breite ein */
+  display: flex;
+  justify-content: flex-end; /* Bild am rechten Rand des Containers */
+  align-items: flex-start;
+  margin: 4.5em 0 3em 0;
+  padding-right: 5em;
+}
+.app-on-smartphone-img {
+  height: auto;
+  object-fit: contain; /* skaliert proportional */
+  margin-left: auto;
+  width: 64%;
+}
+/* Info Überschriften und Texte */
+.info h3 {
+  margin: 1.2em 0;
+}
+.info p {
+  margin: 0.3em 0;
+}
+@media (max-width: 768px) {
+  .info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .info-content {
+    max-width: 90%;
+  }
+  .app-on-smartphone-img {
+    max-width: 80%;
+    margin-top: 2em; /*Abstand zum Text*/
+    justify-content: center;
+  }
+}
+
+/* ===============================
+   FONT-VERERBUNG GLOBAL
+   =============================== */
+header,
+.catch-phrases,
+nav {
+  font-family: inherit;
+}
