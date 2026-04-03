@@ -11,18 +11,27 @@
 /* ===============================
    GLOBALE SETTINGS
    =============================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Angegebene Breite/Höhe beinhaltet bereits Padding und Border. */
+}
 body {
   margin: 0;
   font-family: var(--spotify-font);
   color: var(--text-gray);
 }
+h2 {
+  display: inline-block;
+  font-size: clamp(1rem, 17vw, 2.5rem); /*clamp(MIN, VAL, MAX);*/
+  font-weight: 600;
+}
+h3 {
+  font-size: clamp(0.5rem, 2.1vw, 4rem);
+}
+
 p {
   line-height: 1.5; /* Abstand zwischen den Zeilen */
-}
-header,
-.catch-phrases,
-nav {
-  font-family: inherit;
 }
 
 /* ===============================
@@ -30,24 +39,32 @@ nav {
    =============================== */
 nav {
   background-color: var(--white-color);
+  position: fixed;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   height: 14vh;
-  box-sizing: border-box;
-  padding: 0 40px;
-  position: fixed;
+
+  padding: 0 2.3em;
   z-index: 999; /* Navbar bleibt über allem */
 }
 .nav-links {
   display: flex;
-  list-style: none;
-  gap: 20px;
-  font-size: 1.4em;
+  list-style: none; /*keine Punkte vor den Listen-Elementen*/
+  gap: 1.5vw;
+}
+.nav-links a {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text-gray);
+  transition: transform 0.2s; /*verlangsamt das Hochspringen der Links bei Hovering*/
+}
+.nav-links a:hover {
+  transform: translateY(-0.1em); /* Links gehen bei Hovering nach oben*/
 }
 .spotify-logo {
-  height: 68px;
+  height: 9vh;
   width: auto;
 }
 
@@ -55,29 +72,30 @@ nav {
    CATCHPHRASES / HEADER
    =============================== */
 .catch-phrases {
-  width: 100vw;
-  height: 100vh;
+  height: 128vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 180px;
-  padding: 0 20px;
-  background-image: url("/images/landing.jpg");
-  background-size: cover;
+  text-align: center;
+  color: var(--white-color);
+  padding-top: 18rem;
+  background-image: url("/images/landing.jpg"); /*Bild Konzert*/
+  background-size: cover; /*Bild füllt kompletten Container*/
   background-position: center;
   background-repeat: no-repeat;
-  color: var(--white-color);
-  text-align: center;
 }
+/* "Music for everyone" */
 .catch-phrases h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  margin: 4.2em 0 0.2em 0;
+  font-size: clamp(2.5rem, 23vw, 5rem);
+  font-weight: 600;
+  margin-bottom: 0.1em;
 }
+/* "Spotify is now free on..." */
 .catch-phrases p {
-  font-size: 1.5em;
-  margin: 0 0 0.1em 0;
+  font-size: clamp(1rem, 2.1vw, 3.5rem);
+  line-height: 0.5;
+  margin-bottom: 0;
 }
 
 /* ===============================
@@ -85,64 +103,71 @@ nav {
    =============================== */
 .features {
   text-align: center;
-  margin-bottom: 6em;
+  padding: 2.7rem 2rem 0.1rem; /* oben links/rechts unten */
+  margin-bottom: 3em;
 }
 .features h2 {
-  margin: 2em 0 1em;
-  display: inline-block;
-  border-bottom: 3px solid var(--spotify-green);
+  border-bottom: 3px solid var(--spotify-green); /*Unterstrich unter Überschrift*/
+  margin: 0 0 0.3em;
 }
 .features h3 {
   color: var(--spotify-green);
   margin: 0;
-  padding: 0;
-  font-size: 1.3em;
 }
 .feature-container {
   display: flex;
-  flex-direction: row; /* Artikel nebeneinander */
-  flex-wrap: wrap; /* Zeilenumbruch bei kleinen Bildschirmen */
+  flex-wrap: nowrap; /* keine Zeilenumbrüche */
   justify-content: space-around;
-  align-items: flex-start;
-  gap: 20px; /* Abstand zwischen Artikeln */
-  margin-top: 30px;
+  padding: 4em 1.5em 2em;
 }
 /* Artikel / Einzelne Feature-Box */
 .feature-container article {
   display: flex;
-  flex-direction: column; /* Icon -> H3 -> P */
-  align-items: center; /* horizontale Zentrierung */
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  flex: 1 1 250px; /* alle Artikel gleich breit, mind. 250px */
-  max-width: 300px; /* verhindert zu breite Artikel */
+  max-width: 26rem;
   font-size: 1.2em;
+  flex: 1; /* alle Artikel gleich breit */
+  padding-top: 1.4em; /* Innenabstand für Icon/Text */
+}
+/* Article: "Millions of Songs" */
+.feature-container article:first-child {
+  padding-left: 2rem;
+}
+/* mittlerer Artikel "HD Music" */
+.feature-container article:nth-child(2) {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+/* "Stream Everywhere" */
+.feature-container article:last-child {
+  padding-right: 2rem;
 }
 .feature-container article p {
   margin-top: 1em;
-  font-size: 1.1em;
+  font-size: clamp(1rem, 3.4vh, 4rem);
 }
 .icon-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 1.6rem;
+  height: 10vh;
 }
 .feature-img {
-  height: 100px;
+  height: 15vh;
   width: auto;
-  flex-shrink: 0;
 }
 .feature-img-2 {
-  height: 86px;
+  height: 13vh;
   width: auto;
-  flex-shrink: 0;
 }
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .feature-container {
     flex-direction: column;
     align-items: center;
   }
-
   .feature-container article {
     max-width: 90%;
     margin-bottom: 2em;
@@ -150,43 +175,38 @@ nav {
 }
 
 /* ===============================
-   INFO-SECTION
+   GRÜNE INFO-SECTION
    =============================== */
 .info {
-  border: 3px solid blue;
   background-color: var(--spotify-green);
   color: var(--white-color);
-  width: 100%;
-  min-height: 400px;
   display: flex;
   justify-content: space-between; /* Text links, Bild rechts */
   position: relative;
   align-items: flex-start;
-  padding: 2em 3em;
+  min-height: 40vh;
+  padding: 0em 3em 4.5em;
   margin: 0 2em 2em;
-}
-.info h2 {
-  display: inline-block;
-  margin-top: 2em;
-  border-bottom: 3px solid var(--white-color);
 }
 .spotify-icon-img {
   position: absolute;
-  max-width: 9%;
-  height: auto;
-  z-index: 2;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: block;
-  margin: 0 auto;
+  max-width: 10%;
+  height: auto;
+  z-index: 2; /* liegt weniger tief als info-content */
+  top: 50%;
+  left: 50%; /*Positioniert die obere linke Ecke des Bildes bei 50% von oben ("top: 50%") und links des Containers.*/
+  transform: translate(
+    -50%,
+    -50%
+  ); /*verschiebt Bild nach oben und links um die Hälfte seiner eigenen Größe.*/
+  margin: 0 auto; /* zentriert das Logo */
 }
 .info-content {
-  border: 3px solid yellow;
   position: relative;
-  max-width: 800px;
+  max-width: 50rem;
   margin: 0;
-  padding-bottom: 2.8em;
+  padding: 1em 2em 0;
   color: var(--white-color);
   display: flex;
   flex-direction: column;
@@ -195,28 +215,32 @@ nav {
   text-align: left;
 }
 .app-image-container {
-  border: 3px solid white;
-  max-width: 40%; /* Bild nimmt 40% der Breite ein */
+  max-width: 40%;
   display: flex;
   justify-content: flex-end; /* Bild am rechten Rand des Containers */
   align-items: flex-start;
-  margin: 4.5em 0 3em 0;
-  padding-right: 5em;
+  margin: 5.5em 0 3em;
+  padding-right: 6.3em;
 }
 .app-on-smartphone-img {
-  height: auto;
-  object-fit: contain; /* skaliert proportional */
+  height: 77vh;
+  width: auto;
+  object-fit: contain;
   margin-left: auto;
-  width: 64%;
 }
 /* Info Überschriften und Texte */
+.info h2 {
+  border-bottom: 3px solid var(--white-color);
+}
 .info h3 {
   margin: 1.2em 0;
 }
-.info p {
+.info p,
+.nav-links {
+  font-size: clamp(0.5rem, 1.5vw, 2rem);
   margin: 0.3em 0;
 }
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .info {
     flex-direction: column;
     align-items: center;
@@ -230,13 +254,4 @@ nav {
     margin-top: 2em; /*Abstand zum Text*/
     justify-content: center;
   }
-}
-
-/* ===============================
-   FONT-VERERBUNG GLOBAL
-   =============================== */
-header,
-.catch-phrases,
-nav {
-  font-family: inherit;
 }
